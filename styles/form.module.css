@@ -1,0 +1,36 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 3vh;
+	padding: 5vh;
+	border: 1px solid black;
+	height: 50vh;
+}
+.form input {
+	border: none;
+	border-bottom: 0.2vh solid black;
+	outline: none;
+	width: 15vw;
+	height: 3vh;
+	font-size: 1.3rem;
+	padding-left: 2vh;
+}
+.button {
+	border: none;
+	font-size: 1.2rem;
+	width: 7vw;
+	border-radius: 10px;
+	padding: 0.5vh;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+.button:hover {
+	color: white;
+	background-color: cadetblue;
+}
+.error {
+	font-size: 1rem;
+	color: red;
+}

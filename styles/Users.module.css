@@ -1,0 +1,11 @@
+.userList {
+	display: flex;
+	flex-direction: column;
+	font-size: 2rem;
+	gap: 1vh;
+	background-color: grey;
+}
+.user {
+	display: flex;
+	gap: 1vh;
+}
