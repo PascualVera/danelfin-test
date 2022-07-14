@@ -8,7 +8,11 @@
 	border: 1px solid black;
 	height: 50vh;
 }
-.form input {
+.input_container {
+	display: flex;
+	flex-direction: column;
+}
+.input_container input {
 	border: none;
 	border-bottom: 0.2vh solid black;
 	outline: none;
@@ -16,6 +20,13 @@
 	height: 3vh;
 	font-size: 1.3rem;
 	padding-left: 2vh;
+}
+.input_container p {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 15vw;
+	height: 2vh;
 }
 .button {
 	border: none;

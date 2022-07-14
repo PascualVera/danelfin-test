@@ -1,9 +1,5 @@
 import styles from "../styles/userList.module.css";
-export default function UserList({ users, loading }) {
-	if (loading) {
-		return <h2>loading</h2>;
-	}
-
+function UserList({ users }) {
 	return (
 		<>
 			{" "}
@@ -14,9 +10,10 @@ export default function UserList({ users, loading }) {
 							<p>{user.first_name}</p>
 							<p>{user.last_name}</p>
 						</div>
-						<p className={styles.user_email}>{user.email}</p>
+						<p className={styles.rmail}>{user.email}</p>
 					</div>
 				))}
 		</>
 	);
 }
+export async function getServerSideProps() {}

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/form.module.css";
-export default function Form() {
+export default function LoginForm() {
 	const router = useRouter();
-	const [user, setUser] = useState();
+	const [user, setUser] = useState(null);
 	const [users, setUsers] = useState();
 	const [handleError, setHandleError] = useState({});
 
@@ -15,9 +15,27 @@ export default function Form() {
 			})
 			.then(data => {
 				setUsers(data.data);
-				console.log(users);
 			});
 	}, []);
+	//Login del Usuario
+	const postUser = async user => {
+		try {
+			let OPTIONS = {
+				method: "POST",
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(user),
+			};
+			let url = "https://reqres.in/api/login";
+			let res = await fetch(url, OPTIONS);
+			let data = await res.json();
+			console.log(data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	//Manejo de errores
 	const errors = {
 		email: "No se encuentra el usuario",
@@ -25,8 +43,6 @@ export default function Form() {
 		password: "Introduce un contraseña",
 	};
 	const renderError = name => {
-		console.log(handleError);
-
 		if (name === handleError.name) {
 			return <p className={styles.error}>{handleError.message}</p>;
 		}
@@ -35,8 +51,10 @@ export default function Form() {
 	//Mandar datos del login y validacion
 	const onSubmit = e => {
 		e.preventDefault();
+
 		const data = Object.fromEntries(new FormData(e.target));
 		const findUser = users.find(user => data.email === user.email);
+
 		if (!data.email) {
 			setHandleError({ name: "email_empty", message: errors.email_empty });
 		} else if (!data.password) {
@@ -44,17 +62,24 @@ export default function Form() {
 		} else if (!findUser) {
 			setHandleError({ name: "email", message: errors.email });
 		} else if (findUser) {
-			setUser(data);
+			// postUser(findUser);
+			setUser(findUser);
+			sessionStorage.setItem("danelfin-account", JSON.stringify(findUser));
 			router.push("/users");
 		}
 	};
 	return (
 		<form className={styles.form} onSubmit={onSubmit}>
-			<input name="email" placeholder="email"></input>
-			{renderError("email")}
-			{renderError("email_empty")}
-			<input name="password" placeholder="password"></input>
-			{renderError("password")}
+			<div className={styles.input_container}>
+				<input name="email" placeholder="email"></input>
+				<p>
+					{renderError("email")}
+					{renderError("email_empty")}
+				</p>
+				<input name="password" placeholder="password"></input>
+				<p>{renderError("password")}</p>
+			</div>
+
 			<button className={styles.button} type="submit">
 				Log in
 			</button>

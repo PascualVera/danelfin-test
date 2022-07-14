@@ -37,3 +37,26 @@
 .select_users {
 	display: flex;
 }
+.require_login {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.login_link {
+	font-size: 1.5rem;
+	border: 1px solid black;
+	padding: 1vh 2vh 1vh 2vh;
+	display: flex;
+	border-radius: 3px;
+	transition: all 0.2s;
+}
+.login_link:hover {
+	color: white;
+	background-color: cadetblue;
+	border: 1px solid transparent;
+}
+.back_home_btn {
+	margin-top: 30px;
+	font-size: 1.3rem;
+}
