@@ -1,27 +1,23 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Pagination from "../../components/pagination";
 import styles from "../../styles/Users.module.css";
 import Link from "next/link";
 import UserList from "../../components/userList";
 
-export default function Users() {
-	const isLoggedIn = sessionStorage.getItem("danelfin-account");
-	const [users, setUsers] = useState(null);
+export async function getServerSideProps() {
+	const res = await fetch("https://reqres.in/api/users");
+	const data = await res.json();
+	return { props: { users: data.data } };
+}
+export default function Users({ users }) {
+	const isLoggedIn = localStorage.getItem("danelfin-account");
 	const [currentPage, setCurrentPage] = useState(1);
 	const [usersPerPage, setUseresPerPage] = useState(1);
 	const pages = [1, 2, 5, 10];
-	useEffect(() => {
-		fetch("https://reqres.in/api/users")
-			.then(res => {
-				return res.json();
-			})
-			.then(data => {
-				setUsers(data.data);
-			});
-	});
+
 	//Log out
 	const logOut = () => {
-		sessionStorage.removeItem("danelfin-account");
+		localStorage.removeItem("danelfin-account");
 	};
 	//Configuracion del sistema de paginacion
 	const indexOfLastPost = currentPage * usersPerPage;
@@ -33,11 +29,6 @@ export default function Users() {
 	const paginate = pageNumber => {
 		setCurrentPage(pageNumber);
 	};
-	// if (!isLoggedIn) {
-	// 	return (
-	//
-	// 	);
-	// }
 
 	return (
 		<div className={styles.container}>

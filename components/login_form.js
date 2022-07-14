@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import styles from "../styles/form.module.css";
 export default function LoginForm() {
 	const router = useRouter();
-	const [user, setUser] = useState(null);
 	const [users, setUsers] = useState();
 	const [handleError, setHandleError] = useState({});
 
@@ -62,9 +61,8 @@ export default function LoginForm() {
 		} else if (!findUser) {
 			setHandleError({ name: "email", message: errors.email });
 		} else if (findUser) {
-			// postUser(findUser);
-			setUser(findUser);
-			sessionStorage.setItem("danelfin-account", JSON.stringify(findUser));
+			// postUser(findUser); -- Funcion comentada porque la API esta caida
+			localStorage.setItem("danelfin-account", JSON.stringify(findUser));
 			router.push("/users");
 		}
 	};

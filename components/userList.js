@@ -1,5 +1,5 @@
 import styles from "../styles/userList.module.css";
-function UserList({ users }) {
+export default function UserList({ users }) {
 	return (
 		<>
 			{" "}
@@ -16,4 +16,3 @@ function UserList({ users }) {
 		</>
 	);
 }
-export async function getServerSideProps() {}
