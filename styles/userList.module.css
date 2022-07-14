@@ -1,22 +1,20 @@
 .user {
 	display: flex;
 	width: 30vw;
-	justify-content: center;
-	align-items: center;
+	gap: 5vh;
 	border-bottom: 3px solid black;
 }
 .user_name {
 	display: flex;
 	gap: 2vh;
-	width: 50%;
-
+	width: 15vw;
+	justify-content: flex-start;
 	align-items: center;
-	text-align: left;
-	padding-left: 25%;
+	padding-left: 2vh;
 }
 .user_email {
 	display: flex;
-	width: 50%;
+	width: 15vw;
 	justify-content: center;
 	align-items: center;
 }

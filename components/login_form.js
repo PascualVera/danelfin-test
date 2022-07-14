@@ -74,7 +74,7 @@ export default function LoginForm() {
 					{renderError("email")}
 					{renderError("email_empty")}
 				</p>
-				<input name="password" placeholder="password"></input>
+				<input name="password" placeholder="password" type="password"></input>
 				<p>{renderError("password")}</p>
 			</div>
 
