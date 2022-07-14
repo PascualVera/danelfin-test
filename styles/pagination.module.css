@@ -1,0 +1,25 @@
+.pagination {
+	display: flex;
+	gap: 1vh;
+}
+.pagination ul {
+	display: flex;
+}
+.pagination li {
+	list-style: none;
+}
+.pagination li:hover {
+	color: white;
+	background-color: black;
+}
+
+.pagination li a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid black;
+	font-size: 1.2rem;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+}
